@@ -13,19 +13,19 @@ tb01 = crea.tablaX(c(5,4,6,
 #### · Criterio pesimista (Wald) ----
 p1_pes = criterio.Wald(tb01,T)
 p1_pes
-names(p1_pes$AlternativaOptima) # la mejor deción es la alternativa 1
+names(p1_pes$AlternativaOptima) # la mejor decisión es la alternativa 1
 #### · Criterio optimista ----
 p1_opt = criterio.Optimista(tb01,T)
 p1_opt
-names(p1_opt$AlternativaOptima) # la mejor deción es la alternativa 3
+names(p1_opt$AlternativaOptima) # la mejor decisión es la alternativa 3
 #### · Criterio de Hurwicz ----
 p1_hur = criterio.Hurwicz(tb01,T)
 p1_hur
-names(p1_hur$AlternativaOptima) # la mejor deción es la alternativa 3
+names(p1_hur$AlternativaOptima) # la mejor decisión es la alternativa 3
 #### · Criterio de Savage ----
 p1_sav = criterio.Savage(tb01,T)
 p1_sav
-names(p1_sav$AlternativaOptima) # la mejor deción es la alternativa 1
+names(p1_sav$AlternativaOptima) # la mejor decisión es la alternativa 1
 #### · Criterio de Laplace ----
 p1_lap = criterio.Laplace(tb01,T)
 p1_lap

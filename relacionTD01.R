@@ -1,55 +1,101 @@
+
 # RELACION 1 ----
 
 source("teoriadecision_funciones_incertidumbre.R")
 
+  
 ## PROBLEMA 1 ----
 
-### Aparado a) ----
-tb01 = crea.tablaX(c(5,4,6,
-                     2,3,1,
-                     -1,8,7,
-                     5,2,0), numalternativas = 4, numestados = 3)
+### Apartado a) ----
+tabla_1.1 = crea.tablaX(c(5,4,6,
+                        2,3,1,
+                        -1,8,7,
+                        5,2,0), 
+                      numalternativas = 4, numestados = 3)
+tabla_1.1
 
 #### · Criterio pesimista (Wald) ----
-p1_pes = criterio.Wald(tb01,T)
+p1_pes = criterio.Wald(tabla_1.1,T)
 p1_pes
-names(p1_pes$AlternativaOptima) # la mejor decisión es la alternativa 1
+names(p1_pes$AlternativaOptima) # la mejor decisión según el criterio de Wald es la alternativa 1
 #### · Criterio optimista ----
-p1_opt = criterio.Optimista(tb01,T)
+p1_opt = criterio.Optimista(tabla_1.1,T)
 p1_opt
 names(p1_opt$AlternativaOptima) # la mejor decisión es la alternativa 3
 #### · Criterio de Hurwicz ----
-p1_hur = criterio.Hurwicz(tb01,T)
+p1_hur = criterio.Hurwicz(tabla_1.1,T)
 p1_hur
 names(p1_hur$AlternativaOptima) # la mejor decisión es la alternativa 3
+dibuja.criterio.Hurwicz(tabla_1.1)
 #### · Criterio de Savage ----
-p1_sav = criterio.Savage(tb01,T)
+p1_sav = criterio.Savage(tabla_1.1,T)
 p1_sav
 names(p1_sav$AlternativaOptima) # la mejor decisión es la alternativa 1
 #### · Criterio de Laplace ----
-p1_lap = criterio.Laplace(tb01,T)
+p1_lap = criterio.Laplace(tabla_1.1,T)
 p1_lap
-p1_lap$AlternativaOptima
+p1_lap$AlternativaOptima # la mejor decisión es la alternativa 1
 p1_lap$ValorAlternativas
 #### · Criterio del punto ideal ----
-p1_pid = criterio.PuntoIdeal(tb01,T)
+p1_pid = criterio.PuntoIdeal(tabla_1.1,T)
 p1_pid
-p1_pid$AlternativaOptima
+p1_pid$AlternativaOptima # la mejor decisión es la alternativa 1
 p1_pid$ValorAlternativas
 
 #### Resumen de todos los métodos ----
-p1_todos = criterio.Todos(tb01,alfa=0.5,T)
+p1_todos = criterio.Todos(tabla_1.1,alfa=0.5,T)
 p1_todos
 
-dibuja.criterio.Hurwicz(tb01,T)
-dibuja.criterio.Hurwicz_Intervalos(tb01,T)
+dibuja.criterio.Hurwicz(tabla_1.1,T)
+dibuja.criterio.Hurwicz_Intervalos(tabla_1.1,T)
 
 
-### Aparado b) ----
-tb02 = crea.tablaX(c(2,12,-3,
-                     5,5,-1,
-                     0,10,-2), numalternativas = 3, numestados = 3)
-dibuja.criterio.Hurwicz(tb02, F) # se pone F porque es desfavorable
+
+### Apartado b) ----
+tabla_1.2 = crea.tablaX(c(2,12,-3,
+                          5,5,-1,
+                          0,10,-2), 
+                        numalternativas = 3, numestados = 3)
+tabla_1.2
+
+#### · Criterio pesimista (Wald) ----
+p1_pes = criterio.Wald(tabla_1.2,favorable = F)
+p1_pes
+names(p1_pes$AlternativaOptima) # la mejor decisión según el criterio de Wald es la alternativa 2
+#### · Criterio optimista ----
+p1_opt = criterio.Optimista(tabla_1.2,favorable = F)
+p1_opt
+names(p1_opt$AlternativaOptima) # la mejor decisión es la alternativa 1
+#### · Criterio de Hurwicz ----
+p1_hur = criterio.Hurwicz(tabla_1.2,favorable = F)
+p1_hur
+names(p1_hur$AlternativaOptima) # la mejor decisión es la alternativa 2
+dibuja.criterio.Hurwicz(tabla_1.2)  # se pone F porque es desfavorable
+#### · Criterio de Hurwicz General ----
+p1_hurGen = criterio.Hurwicz.General(tabla_1.2,favorable = F)
+p1_hurGen
+names(p1_hurGen$AlternativaOptima) # la mejor decisión es la alternativa 2
+#### · Criterio de Savage ----
+p1_sav = criterio.Savage(tabla_1.2,favorable = F)
+p1_sav
+names(p1_sav$AlternativaOptima) # la mejor decisión son las alternativa 2 o 3
+#### · Criterio de Laplace ----
+p1_lap = criterio.Laplace(tabla_1.2,favorable = F)
+p1_lap
+p1_lap$AlternativaOptima # la mejor decisión es la alternativa 3
+p1_lap$ValorAlternativas
+#### · Criterio del punto ideal ----
+p1_pid = criterio.PuntoIdeal(tabla_1.2,favorable = F)
+p1_pid
+p1_pid$AlternativaOptima # la mejor decisión es la alternativa 3
+p1_pid$ValorAlternativas
+
+#### Resumen de todos los métodos ----
+p1_todos = criterio.Todos(tabla_1.2,alfa=0.5,T)
+p1_todos
+
+dibuja.criterio.Hurwicz(tabla_1.2,T)
+dibuja.criterio.Hurwicz_Intervalos(tabla_1.2,T)
 
 
 
@@ -229,7 +275,7 @@ tabla_7
 sol7 = criterio.Todos(tabla_7, alfa = 0.5, favorable = T)
 sol7
 
-### Aparado a) Criterio pesimista ----
+### Apartado a) Criterio pesimista ----
 sol7a = criterio.Wald(tabla_7)
 sol7a
 sol7a$AlternativaOptima
@@ -238,7 +284,8 @@ sol7a$AlternativaOptima
 # negocio de un amigo.
 
 
-### Aparado b) Criterio Savage ----
+
+### Apartado b) Criterio Savage ----
 sol7b = criterio.Savage(tabla_7)
 sol7b
 sol7b$AlternativaOptima
